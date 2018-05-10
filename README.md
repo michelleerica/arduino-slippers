@@ -1,6 +1,6 @@
 # Milo learns hardware
 
-This is a passion project and my first hardware project.
+This is a passion project and also my first hardware project.
 
 I wanted to learn about hardware so I'm teaching myself (with a lot of assistance from others) with the Arduino Bluno Beetle and a passion project involving sensors and an accelerometer on a ballet slipper.
 
