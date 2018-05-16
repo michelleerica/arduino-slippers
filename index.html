@@ -1,0 +1,36 @@
+<!-- <html>
+<head>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+
+  <script type="text/javascript"> 
+    var socket = io.connect('http://YOUR IP HERE');
+    socket.on('connected', function(data) {    
+      console.log('Connected, this is what I received : ', data);
+      }); 
+    // when you get a receiveSerial event, do this 
+    socket.on('receiveSerial', function (data) {    
+      // look for the textDisplay element in the HTML below:
+      var element = document.getElementById('modbusDisplay');
+      console.log(data); //Check the console in chrome tools to see this
+      $("#serialDisplay").val(data);
+      // set the stuff inside the element's HTML tags to
+      // whatever the 'value' property of the received data is:    
+      });  
+  </script>
+  
+<h2> SERIAL STRING SEND</h2>
+
+<input id="send" type="submit" value="Send" />
+<input id="serialString" value="Enter your Serial string here..." />
+
+<h2> SERIAL STRING RECEIVED:</h2>
+<input disabled="disabled" id="serialDisplay" value="Text will appear here.." />
+<script>   
+  $("#send").click(function (event) {
+    event.preventDefault();
+    var element = document.getElementById('serialString');
+    socket.emit("sendSerial", element.value);<br />      });
+</script>
+</head>
+</html> -->
