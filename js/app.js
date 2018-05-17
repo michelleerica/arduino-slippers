@@ -80,25 +80,25 @@ var draw = function () {
         circles.push(circle)
     // } // keypress
 
-    for (let i = 0; i < circles.length; i++) {
-        var c = circles[i]
+        for (let i = 0; i < circles.length; i++) {
+            var c = circles[i]
 
-        c.x += c.velocityX * velocityScale
-        c.y += c.velocityY * velocityScale
+            c.x += c.velocityX * velocityScale
+            c.y += c.velocityY * velocityScale
 
-        if (c.x >= windowWidth || c.x <= 0) {
-            c.velocityX *= -1
-        }
-        if (c.y >= windowHeight || c.y <= 0) {
-            c.velocityY *= -1
-        }
+            if (c.x >= windowWidth || c.x <= 0) {
+                c.velocityX *= -1
+            }
+            if (c.y >= windowHeight || c.y <= 0) {
+                c.velocityY *= -1
+            }
 
-        // c.bright--
-        fill(c.hue, 155, c.bright)
-        ellipse(c.x, c.y, random(80), random(80))
-        // text('p5 is cool', c.x, c.y)
+            // c.bright--
+            fill(c.hue, 155, c.bright)
+            ellipse(c.x, c.y, random(80), random(80))
+            // text('p5 is cool', c.x, c.y)
 
-        } // Fourth Example
+        } // if statement
     }
             
 }

@@ -26,9 +26,16 @@ app.use("/js", express.static(__dirname + "/js"));
 io.on('connection', function (socket) {
     console.log('a user connected');
     
+    // convert data from Arduino (structured as a string) into an object
     lineReader.on('line', function (line) {
-        console.log(line);
-        io.emit('sensor', line);  // send to browser!
+        console.log(`line: ${line}`);
+        var ar = line.split(";");
+            var sensor = {
+                firstSensor: parseFloat(ar[0]),
+                secondSensor: parseFloat(ar[1])
+            };
+        console.log(sensor);
+        io.emit('sensor', sensor);  // send to browser!
     });
     
 });
