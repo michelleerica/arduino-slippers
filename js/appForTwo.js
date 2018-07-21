@@ -42,7 +42,7 @@ var draw = function () {
     }
 
     // to stop current drawing
-    if (x === 0) {
+    if (x === 0 && y === 0) {
         circles = [];
     }
 

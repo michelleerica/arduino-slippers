@@ -3,7 +3,7 @@
 var SerialPort = require('serialport');
 var createInterface = require("readline").createInterface;
 
-var serialPort = new SerialPort("/dev/cu.usbmodem1451", { baudRate: 9600 });
+var serialPort = new SerialPort("/dev/cu.usbmodem1461", { baudRate: 9600 });
 var lineReader = createInterface({ input: serialPort });
 
 
