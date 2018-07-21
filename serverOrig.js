@@ -29,31 +29,10 @@ io.on('connection', function (socket) {
     // convert data from Arduino (structured as a string) into an object
     lineReader.on('line', function (line) {
         console.log(`line: ${line}`);
-
-
-        var re1 = '.*?';	// Non-greedy match on filler
-        var re2 = '(\\d+)';	// Integer Number 1
-        var re3 = '.*?';	// Non-greedy match on filler
-        var re4 = '(\\d+)';	// Integer Number 2
-        var re5 = '.*?';	// Non-greedy match on filler
-        var re6 = '(\\d+)';	// Integer Number 3
-
-        var p = new RegExp(re1 + re2 + re3 + re4 + re5 + re6, ["i"]);
-        var m = p.exec(line);
-        if (m != null) {
-            var int1 = m[1];
-            var int2 = m[2];
-            var int3 = m[3];
-            // var("(" + int1.replace(/</, "&lt;") + ")" + "(" + int2.replace(/</, "&lt;") + ")" + "(" + int3.replace(/</, "&lt;") + ")" + "\n");
-        };
-
-
-
-        // var ar = line.split(";");
+        var ar = line.split(";");
             var sensor = {
-                x: parseFloat(int1),
-                y: parseFloat(int2),
-                z: parseFloat(int3)
+                firstSensor: parseFloat(ar[0]),
+                secondSensor: parseFloat(ar[1])
             };
         console.log(sensor);
         io.emit('sensor', sensor);  // send to browser!
