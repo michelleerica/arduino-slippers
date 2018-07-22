@@ -1,4 +1,6 @@
-OUTPUTAcceleration x: 625 mg 	y: 375 mg 	z: 312 mg
+OUTPUT
+
+Acceleration x: 625 mg 	y: 375 mg 	z: 312 mg
 Acceleration x: -125 mg 	y: -187 mg 	z: 437 mg
 Acceleration x: 59 mg 	y: 57 mg 	z: 6 mg
 Acceleration x: 0 mg 	y: 0 mg 	z: 0 mg

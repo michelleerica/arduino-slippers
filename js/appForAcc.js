@@ -2,7 +2,7 @@
 // Currently not working most likely due to hardware issue (data received is inconsistent with physical positioning)
 
 var setup = function() {
-  createCanvas(windowWidth, windowHeight); // window.innerWidth
+  createCanvas(windowWidth, windowHeight); 
   background(255); 
 //   frameRate(10);
 };
@@ -24,29 +24,42 @@ socket.on('sensor', function (data) {
 
 });
 
+let circles = [];
+let velocityScale = 1;
 
+// test draw a circle
 function draw() {
-    var positionX = [];
-    var positionY = [];
-    var positionZ = [];
 
-    positionX.push(accX);
-    positionY.push(accY);
-
-    stroke(0);
     // debugger;
-    if (positionX.length >= 1) {
-        for (let i = 0; i < positionX; i++) {
-            console.log(positionX[i]);
-            // const x = positionX[i];
-            // const y = positionY[i];
-            // const z = positionZ[i];
-            console.log({positionX});
+    var circle = {
+        velocityX: random(-10, 10),
+        velocityY: random(-10, 10),
+        x: accX,
+        y: accY,
+        hue: hue,
+        bright: 255
+    };
 
-            line(i, i, i+1, i+1)        
+    circles.push(circle);
+    // } // keypress
+
+    for (let i = 0; i < circles.length; i++) {
+        var c = circles[i];
+
+        c.x += c.velocityX * velocityScale;
+        c.y += c.velocityY * velocityScale;
+
+        if (c.x >= windowWidth || c.x <= 0) {
+            c.velocityX *= -1;
         }
+        if (c.y >= windowHeight || c.y <= 0) {
+            c.velocityY *= -1;
+        }
+
+        fill(c.hue, 155, c.bright);
+        ellipse(c.x, c.y, random(80), random(80));
     }
+        
 
-
-
-}
+} //draw
+draw();
