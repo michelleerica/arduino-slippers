@@ -3,7 +3,7 @@
 var SerialPort = require('serialport');
 var createInterface = require("readline").createInterface;
 
-var serialPort = new SerialPort("/dev/cu.usbmodem14621", { baudRate: 115200 });
+var serialPort = new SerialPort("/dev/cu.usbmodem14611", { baudRate: 115200 });
 var lineReader = createInterface({ input: serialPort });
 
 
@@ -30,21 +30,18 @@ io.on('connection', function (socket) {
     lineReader.on('line', function (line) {
         console.log(`line: ${line}`);
         var ar = line.split(";");
-        var sensor = {
-            fsrOne: parseFloat(ar[0]),
-            fsrTwo: parseFloat(ar[1]),
-            accX: parseFloat(ar[2]),
-            accY: parseFloat(ar[3]),
-            accZ: parseFloat(ar[4])
-        };
+            var sensor = {
+                firstSensor: parseFloat(ar[0]),
+                secondSensor: parseFloat(ar[1])
+            };
         console.log(sensor);
         io.emit('sensor', sensor);  // send to browser!
     });
-    });
     
+});
+
 // for debugging without a listening browser page
-// lineReader.on('line', function (line) {
-//     console.log(line);
+// lineReader.on('line', function (line) {ç//     console.log(line);
 //     io.emit('sensor', { value: line });
 // });
 

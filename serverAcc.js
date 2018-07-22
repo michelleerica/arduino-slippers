@@ -3,7 +3,7 @@
 var SerialPort = require('serialport');
 var createInterface = require("readline").createInterface;
 
-var serialPort = new SerialPort("/dev/cu.usbmodem14611", { baudRate: 115200 });
+var serialPort = new SerialPort("/dev/cu.usbmodem14621", { baudRate: 115200 });
 var lineReader = createInterface({ input: serialPort });
 
 
@@ -29,10 +29,26 @@ io.on('connection', function (socket) {
     // convert data from Arduino (structured as a string) into an object
     lineReader.on('line', function (line) {
         console.log(`line: ${line}`);
-        var ar = line.split(";");
+
+
+        var re1 = '.*?';	// Non-greedy match on filler
+        var re2 = '(\\d+)';	// Integer Number 1
+        var re3 = '.*?';	// Non-greedy match on filler
+        var re4 = '(\\d+)';	// Integer Number 2
+        var re5 = '.*?';	// Non-greedy match on filler
+        var re6 = '(\\d+)';	// Integer Number 3
+
+        var p = new RegExp(re1 + re2 + re3 + re4 + re5 + re6, ["i"]);
+        var m = p.exec(line);
+        if (m != null) {
+            var int1 = m[1];
+            var int2 = m[2];
+            var int3 = m[3];
+        };
             var sensor = {
-                firstSensor: parseFloat(ar[0]),
-                secondSensor: parseFloat(ar[1])
+                x: parseFloat(int1),
+                y: parseFloat(int2),
+                z: parseFloat(int3)
             };
         console.log(sensor);
         io.emit('sensor', sensor);  // send to browser!
