@@ -16,6 +16,9 @@ var setup = function () {
 
 var fsrOne = 0.00;
 var fsrTwo = 0.00;
+var accX = 0.00;
+var accY = 0.00;
+var accZ = 0.00;
 var socket = io();
 socket.on('sensor', function (data) {
     console.log('sensor data', data);
@@ -35,7 +38,11 @@ socket.on('sensor', function (data) {
 
 var draw = function () {
 
-    var hue = map(255, 0, windowWidth, 0, 255);
+  // FSR gives us 0-1 values, so need to multiple to be useful
+  var x = fsrOne * 1000;
+  var y = fsrTwo * 1000;
+
+  accZ = (accZ / windowHeight) * 100
 
     // to clear screen
     if (keyIsDown(RETURN)) {
@@ -50,17 +57,18 @@ var draw = function () {
 
     // to draw
     if (fsrOne > 0 || fsrTwo > 0) {
-      // var hue = map(mouseX, 0, windowWidth, 0, 255)
+      var hue = map(255, 0, windowWidth, 0, 255)
       var circle = { 
         velocityX: accX,
-         velocityY: accY, 
+        velocityY: accY, 
+        size: accZ,
         x: fsrOne, 
-          y: fsrTwo, 
-         hue: hue, 
-         bright: 255 };
+        y: fsrTwo, 
+        hue: hue, 
+        bright: 255 
+      };
 
       circles.push(circle);
-      // } // keypress
 
       for (let i = 0; i < circles.length; i++) {
         var c = circles[i];
@@ -76,7 +84,13 @@ var draw = function () {
         }
 
         fill(c.hue, 155, c.bright);
-        ellipse(c.x, c.y, random(80), random(80));
+
+        if (accZ > 0) {
+          //debugger;
+          ellipse(c.x, c.y, accZ, accZ);
+        } else {
+          ellipse(c.x, c.y, random(80), random(80));
+        }
       }
     } // if statement
 };
