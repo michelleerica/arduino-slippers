@@ -3,7 +3,7 @@
 var SerialPort = require('serialport');
 var createInterface = require("readline").createInterface;
 
-var serialPort = new SerialPort("/dev/cu.usbmodem14521", { baudRate: 115200 });
+var serialPort = new SerialPort("/dev/cu.usbmodem14611", { baudRate: 115200 });
 var lineReader = createInterface({ input: serialPort });
 
 
@@ -14,13 +14,14 @@ var io = require("socket.io")(http);
 
 
 app.get('/', function (req, res) {
+   
     res.sendFile(__dirname + '/socket.html');
 });
 
 // Serves resources from public folder
 app.use(express.static("public"));
-app.use("/css", express.static(__dirname + "/css"));
-app.use("/js", express.static(__dirname + "/js"));
+// app.use("/css", express.static(__dirname + "/css"));
+// app.use("/js", express.static(__dirname + "/js"));
 
 // listen for websocket connections from the browser
 io.on('connection', function (socket) {
