@@ -3,7 +3,7 @@
 var SerialPort = require('serialport');
 var createInterface = require("readline").createInterface;
 
-var serialPort = new SerialPort("/dev/cu.usbmodem14511", { baudRate: 115200 });
+var serialPort = new SerialPort("/dev/cu.usbmodem14641", { baudRate: 115200 });
 var lineReader = createInterface({ input: serialPort });
 
 
@@ -14,15 +14,11 @@ var io = require("socket.io")(http);
 
 
 app.get('/', function (req, res) {
-   
     res.sendFile(__dirname + '/socket.html');
 });
 
 // Serves resources from public folder
 app.use(express.static("public"));
-// app.use("/css", express.static(__dirname + "/css"));
-// app.use("/js", express.static(__dirname + "/js"));
-
 io.on('error', function(err){
   console.log('GOT ERROR', err);
 });
@@ -30,9 +26,7 @@ io.on('error', function(err){
 // listen for websocket connections from the browser
 io.on('connection', function (socket) {
     console.log('a user connected');
-    
-
-        
+     
     // convert data from Arduino (structured as a string) into an object
     lineReader.on('line', function (line) {
         console.log(`line: ${line}`);

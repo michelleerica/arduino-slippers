@@ -48,28 +48,28 @@ window.onload = () => {
 
 };
 
-const addToAverage = (averages, sensorData, frame) => {
-  // add to array
-  const i = frame % averageSize;  // wrap the index by the array length
-  averages.xVals[i] = sensorData.accX;
-  averages.yVals[i] = sensorData.accY;
-  averages.zVals[i] = sensorData.accZ;
-  // console.log(i, averages.zVals[i], averages, sensorData);
-  sensor.debug = averages.zVals.toString()
-  // calculate new averages
-  var xt=0, yt=0, zt=0;
-  for (let i = 0; i < averageSize; i++) {
-    xt += averages.xVals[i];
-    yt += averages.yVals[i];
-    zt += averages.zVals[i];
-  }
-  averages.x = xt / averageSize;
-  averages.y = yt / averageSize;
-  averages.z = zt / averageSize;
+// const addToAverage = (averages, sensorData, frame) => {
+//   // add to array
+//   const i = frame % averageSize;  // wrap the index by the array length
+//   averages.xVals[i] = sensorData.accX;
+//   averages.yVals[i] = sensorData.accY;
+//   averages.zVals[i] = sensorData.accZ;
+//   // console.log(i, averages.zVals[i], averages, sensorData);
+//   sensor.debug = averages.zVals.toString()
+//   // calculate new averages
+//   var xt=0, yt=0, zt=0;
+//   for (let i = 0; i < averageSize; i++) {
+//     xt += averages.xVals[i];
+//     yt += averages.yVals[i];
+//     zt += averages.zVals[i];
+//   }
+//   averages.x = xt / averageSize;
+//   averages.y = yt / averageSize;
+//   averages.z = zt / averageSize;
 
-  // console.log(averages.z)
+//   // console.log(averages.z)
 
-};
+// };
 
 const initSocket = () => {
 
@@ -117,7 +117,7 @@ var setup = function () {
 
   colorMode(HSB, 255); // Use Hue Saturation Brightness, with a range of 0-255 for each
 
-  noStroke(); // Don't draw a border on shapes
+  // noStroke(); // Don't draw a border on shapes
   frameRate(10);
   noLoop();
 
