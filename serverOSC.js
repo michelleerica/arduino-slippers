@@ -83,35 +83,7 @@ wss.on("connection", function (socket) {
         raw: true
     });
 
-        // convert data from Arduino (structured as a string) into an object
-    // lineReader.on('line', function (line) {
-    //     console.log(`line: ${line}`);
-    //     var ar = line.split(";");
-    //     var sensor = {
-    //         fsrOne: parseFloat(ar[0]),
-    //         fsrTwo: parseFloat(ar[1]),
-    //         accX: parseFloat(ar[2]),
-    //         accY: parseFloat(ar[3]),
-    //         accZ: parseFloat(ar[4])
-    //     };
-    //     // console.log(sensor);
-    //     var ret = io.emit('sensor', sensor);  // send to browser!
-    // });
-        // convert data from Arduino (structured as a string) into an object
-    // lineReader.on('line', function (line) {
-    //     console.log(`line: ${line}`);
-    //     var ar = line.split(";");
-    //     var sensor = {
-    //         fsrOne: parseFloat(ar[0]),
-    //         fsrTwo: parseFloat(ar[1]),
-    //         accX: parseFloat(ar[2]),
-    //         accY: parseFloat(ar[3]),
-    //         accZ: parseFloat(ar[4])
-    //     };
-    //     // console.log(sensor);
-    //     var ret = io.emit('sensor', sensor);  // send to browser!
-    // });
-
+       
     // convert data from Arduino(structured as a string) into an object
     lineReader.on('line', function (line) {
         // console.log(`line: ${line}`);
@@ -132,20 +104,6 @@ wss.on("connection", function (socket) {
 
     });
 
-
-    // setInterval(() => {
-    //     console.log('sending!');
-    //     socketPort.send({
-    //         address: "/carrier/frequency",
-    //         args: [
-    //         {
-    //             type: "f",
-    //             value: 440
-    //         }
-    //         ]
-    //     });
-    // }, 1000);
-
     socketPort.on("error", function () {
         // Need to do something, anything here to prevent error from killing this process
         // Seems to be more important to close relay here - don't seem to need the 'close' event handler??
@@ -154,31 +112,3 @@ wss.on("connection", function (socket) {
     });
 
 });
-// // listen for websocket connections from the browser
-// io.on('connection', function (socket) {
-//     console.log('a user connected');
-     
-    // convert data from Arduino (structured as a string) into an object
-    // lineReader.on('line', function (line) {
-    //     console.log(`line: ${line}`);
-    //     var ar = line.split(";");
-    //     var sensor = {
-    //         fsrOne: parseFloat(ar[0]),
-    //         fsrTwo: parseFloat(ar[1]),
-    //         accX: parseFloat(ar[2]),
-    //         accY: parseFloat(ar[3]),
-    //         accZ: parseFloat(ar[4])
-    //     };
-    //     // console.log(sensor);
-    //     var ret = io.emit('sensor', sensor);  // send to browser!
-    // });
-
-    // });
-    
-
-// for debugging without a listening browser page
-// lineReader.on('line', function (line) {
-//     console.log(line);
-//     io.emit('sensor', { value: line });
-// });
-
